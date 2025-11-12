@@ -5,19 +5,19 @@ const nextBtn = document.getElementById('next-page');
 let currentPage = 1;
 let totalPages = 1;
 
-// Función para traer y mostrar personajes
+
 async function fetchCharacters(page = 1) {
   try {
     const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`);
     const data = await response.json();
 
-    // Guardamos cuántas páginas hay en total
+    
     totalPages = data.info.pages;
 
-    // Limpiamos la lista
+    
     characterList.innerHTML = '';
 
-    // Mostramos cada personaje como <li>
+    
     data.results.forEach(character => {
       const li = document.createElement('li');
       li.classList.add('character-card');
@@ -29,7 +29,7 @@ async function fetchCharacters(page = 1) {
       characterList.appendChild(li);
     });
 
-    // Desactivar botones en extremos
+    
     prevBtn.disabled = page === 1;
     nextBtn.disabled = page === totalPages;
 
@@ -38,7 +38,7 @@ async function fetchCharacters(page = 1) {
   }
 }
 
-// Eventos de los botones
+
 prevBtn.addEventListener('click', () => {
   if (currentPage > 1) {
     currentPage--;
@@ -53,7 +53,7 @@ nextBtn.addEventListener('click', () => {
   }
 });
 
-// Cargar la primera página al iniciar
+
 fetchCharacters(currentPage);
 
 
